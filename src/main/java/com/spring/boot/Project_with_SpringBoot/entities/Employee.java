@@ -4,7 +4,6 @@ package com.spring.boot.Project_with_SpringBoot.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-
 import java.math.BigInteger;
 
 @Entity
@@ -18,9 +17,9 @@ public class Employee {
 
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private int id;       // JpaRepository<xxx, Integer> , Integer as a wrapper for int type
     @NonNull
     @Column(name = "name")
     private String name;

@@ -23,7 +23,7 @@ services:
     environment:
       ADMINER_DEFAULT_SERVER: db
     ports:
-    # http://localhost:8085/
+      # http://localhost:8085/
       - 8085:8080
 volumes:
   my-db:

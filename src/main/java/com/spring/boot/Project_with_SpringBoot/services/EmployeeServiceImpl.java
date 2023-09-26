@@ -1,42 +1,55 @@
 package com.spring.boot.Project_with_SpringBoot.services;
 
 
-
-import com.spring.boot.Project_with_SpringBoot.dao.EmployeeDAO;
+import com.spring.boot.Project_with_SpringBoot.dao.EmployeeRepository;
 import com.spring.boot.Project_with_SpringBoot.entities.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
-    private EmployeeDAO employeeDAO;
+    private EmployeeRepository employeeRepository;
 
     @Override
-    @Transactional
     public List<Employee> getAllEmployees() {
-        return employeeDAO.getAllEmployees();
+        return employeeRepository.findAll();
     }
 
     @Override
-    @Transactional
-    public void saveEmployee(Employee employee) {
-        employeeDAO.saveEmployee(employee);
-    }
-
-    @Override
-    @Transactional
     public Employee getEmployee(int id) {
-        return employeeDAO.getEmployee(id);
+        Employee employee = null;
+        Optional<Employee> byId = employeeRepository.findById(id);
+
+        if (byId.isPresent()) {
+            employee = byId.get();
+        } else {
+            //throw new NoSuchElementException("No such employee with ID: " + id);
+            System.out.println("No such employee with ID: " + id);
+        }
+        return employee;
+    }
+
+
+    @Override
+    public void saveEmployee(Employee employee) {
+        employeeRepository.save(employee);
+    }
+
+
+    @Override
+    public void deleteEmployee(int id) {
+        employeeRepository.deleteById(id);
     }
 
     @Override
-    @Transactional
-    public void deleteEmployee(int id) {
-        employeeDAO.deleteEmployee(id);
+    public List<Employee> findAllByName(String name) {
+        List<Employee> employeeList = employeeRepository.findAllByName(name);
+
+        return employeeList;
     }
 }

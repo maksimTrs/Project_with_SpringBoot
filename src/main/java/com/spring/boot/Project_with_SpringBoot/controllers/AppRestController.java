@@ -1,7 +1,6 @@
 package com.spring.boot.Project_with_SpringBoot.controllers;
 
 
-
 import com.spring.boot.Project_with_SpringBoot.entities.Employee;
 import com.spring.boot.Project_with_SpringBoot.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,14 @@ public class AppRestController {
 
         Employee employee = employeeService.getEmployee(empId);
 
+        return employee;
+    }
 
+
+    @GetMapping("/employees/name/{empName}")
+    public List<Employee> getEmployeesByName(@PathVariable String empName) {
+
+        List<Employee> employee = employeeService.findAllByName(empName);
 
         return employee;
     }

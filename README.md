@@ -1,4 +1,4 @@
-###  **STEPS:**
+### **STEPS:**
 
 1) Run MySQL + adminer via **_docker-compose.yml_** file
 
@@ -10,7 +10,6 @@
 
 
 4) Open Postman collection **_Spring MVC with REST API.postman_collection.json_** and execute requests
-
 
 OR
 
